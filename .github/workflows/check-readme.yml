@@ -1,0 +1,23 @@
+name: README Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-readme:
+    name: Check README exists
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Check README.md exists
+        run: |
+          if [ ! -f README.md ]; then
+            echo "Error: README.md does not exist"
+            exit 1
+          fi
+          echo "README.md exists"
